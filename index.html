@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="star">
+      <img src="images/icon-star.svg" alt="star">
+    </div>
+    <div class="body_cont">
+      <p class="body">
+        How did we do?
+      </p>
+      <p class="text">
+        Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!
+      </p>
+      <div class="rating">
+        <button class="btn active">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button class="btn">4</button>
+        <button class="btn">5</button>
+      </div>
+      <button class="submit">
+        SUBMIT
+      </button>
+    </div>
+  </div>
+  <div class="thanKyou none">
+    <img src="images/illustration-thank-you.svg" alt="thank you">
+    <p class="rating_text">
+      You selected 1 out of 5
+    </p>
+    <h1 class="thankYou">
+      Thank you!
+    </h1>
+    <p class="text">
+      We appreciate you taking the time to give a rating. If you ever need more support, don’t hesitate to get in touch!
+    </p>
+  </div>
+  <script>
+    let rating = document.querySelectorAll(".rating .btn");
+    rating.forEach((ele)=>{
+      ele.addEventListener("click",(e)=>{
+        rating.forEach((ele)=>{
+          ele.classList.remove("active")
+        })
+        e.target.classList.add("active")
+        let rating_text = document.querySelector(".rating_text")
+        rating_text.innerHTML = `You selected ${e.target.innerHTML} out of 5`
+        // console.log(e.target.innerHTML)
+      })
+    })
+    let thanKyou = document.querySelector(".thanKyou")
+    let container = document.querySelector(".container")
+    let submitBtn = document.querySelector(".submit")
+    submitBtn.addEventListener("click" , ()=>{
+      if(thanKyou.classList.contains("none")){
+        thanKyou.classList.remove("none")
+        container.classList.add("none")
+      }
+      else{
+        thanKyou.classList.add("none")
+        container.classList.remove("none")
+      }
+    })
+  </script>
+</body>
+</html>
